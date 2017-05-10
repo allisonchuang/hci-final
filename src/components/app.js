@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
 import '../style.scss';
 import Counter from '../containers/counter';
 import Controls from '../containers/controls';
@@ -41,17 +43,22 @@ const Welcome = (props) => {
 
 const App = (props) => {
   return (
-    <Router>
-      <div>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Welcome} />
-          <Route path="/about" component={About} />
-          <Route exact path="/test/:id" component={Test} />
-          <Route component={FallBack} />
-        </Switch>
-      </div>
-    </Router>
+    <MuiThemeProvider>
+      <Router>
+        <div>
+          <AppBar
+            title="Title"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+          />
+          <Switch>
+            <Route exact path="/" component={Welcome} />
+            <Route path="/about" component={About} />
+            <Route exact path="/test/:id" component={Test} />
+            <Route component={FallBack} />
+          </Switch>
+        </div>
+      </Router>
+    </MuiThemeProvider>
   );
 };
 
