@@ -94,6 +94,10 @@ const styles = {
   list: {
     marginTop: -15,
   },
+  addButton: {
+    marginTop: -12,
+    marginLeft: -12,
+  },
 };
 
 class App extends Component {
@@ -105,10 +109,12 @@ class App extends Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
+  // handle when the menu button on appbar is pressed
   handleToggle() {
     this.setState({ drawerOpen: !this.state.drawerOpen });
   }
 
+  // close the drawer when mouse is clicked outside
   handleClose() {
     this.setState({ drawerOpen: false });
   }
@@ -146,13 +152,13 @@ class App extends Component {
                     hoverColor={white}
                     style={styles.listItem}
                     primaryText="Berry 171A"
-                    rightIcon={<ContentAdd />}
+                    rightIcon={<IconButton iconStyle={styles.addButton}><ContentAdd /></IconButton>}
                   />
                   <ListItem
                     hoverColor={white}
                     style={styles.listItem}
                     primaryText="Baker 258K"
-                    rightIcon={<ContentAdd />}
+                    rightIcon={<IconButton iconStyle={styles.addButton}><ContentAdd /></IconButton>}
                   />
                 </List>
                 <Subheader style={styles.subheader2}>Quick Settings</Subheader>

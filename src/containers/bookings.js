@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import IconButton from 'material-ui/IconButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { green500, white } from 'material-ui/styles/colors';
@@ -34,8 +36,21 @@ const styles = {
   list: {
     marginTop: -15,
   },
-  label: {
-
+  xButton: {
+    marginTop: -12,
+    marginLeft: -12,
+  },
+  iconClick: {
+    marginTop: -10,
+    marginLeft: -20,
+  },
+  iconX: {
+    marginTop: 0,
+    marginLeft: 0,
+  },
+  bookingRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
 };
 
@@ -54,7 +69,7 @@ class Bookings extends Component {
       const string = `${booking.time} (${booking.room})`;
       return (
         <div className="post-layout">
-          <ListItem hoverColor={white} primaryText={string} style={styles.listItem} />
+          <ListItem hoverColor={white} primaryText={string} style={styles.listItem} rightIcon={<IconButton iconStyle={styles.xButton}><NavigationClose /></IconButton>} />
         </div>
       );
     });
@@ -71,20 +86,19 @@ class Bookings extends Component {
       return (
         <div>
           <MuiThemeProvider>
-            <DropDownMenu
-              value={1}
-              // primary={string}
-              labelStyle={styles.label}
-              onChange={this.handleChange}
-              style={styles.customWidth}
-              anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-              targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-              // autoWidth={false}
-            >
-              <MenuItem disabled label={string} value={1} style={styles.menuItem}>
-                {this.mapBookings(booking)}
-              </MenuItem>
-            </DropDownMenu>
+            <div style={styles.bookingRow}>
+              <DropDownMenu
+                value={1}
+                labelStyle={styles.label}
+                onChange={this.handleChange}
+                style={styles.customWidth}
+              >
+                <MenuItem disabled label={string} value={1} style={styles.menuItem}>
+                  {this.mapBookings(booking)}
+                </MenuItem>
+              </DropDownMenu>
+              <IconButton style={styles.iconClick} iconStyle={styles.iconX}><NavigationClose /></IconButton>
+            </div>
           </MuiThemeProvider>
         </div>
       );
