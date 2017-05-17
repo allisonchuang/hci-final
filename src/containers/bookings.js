@@ -8,7 +8,6 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { green500, white } from 'material-ui/styles/colors';
 import List from 'material-ui/List/List';
-import Divider from 'material-ui/Divider';
 import ListItem from 'material-ui/List/ListItem';
 
 const styles = {
