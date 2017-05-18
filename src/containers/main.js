@@ -39,6 +39,9 @@ const styles = {
   capacity: {
     marginLeft: 70,
   },
+  roomRow: {
+    marginTop: 30,
+  },
 };
 
 class Main extends Component {
@@ -118,11 +121,11 @@ class Main extends Component {
     const roomgrid = this.state.rooms.map((room, i) => {
       const times = room.times.map((time) => {
         let button = '';
-        if (time.available) {
+        if (time.available && (this.state.selected.length < 4)) {
           button = (<Checkbox
             label={time.time}
-            onCheck={() => {
-              if (this.state.selected.length < 4) {
+            onCheck={(event, isInputChecked) => {
+              if (isInputChecked) {
                 this.state.selected.push({
                   room: this.state.rooms[i].room,
                   time: time.time,
@@ -130,11 +133,65 @@ class Main extends Component {
                 this.setState({
                   open: true,
                 });
+              } else if (!isInputChecked) {
+                for (let x = 0; x < 4; x += 1) {
+                  if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
+                    room: this.state.rooms[i].room,
+                    time: time.time,
+                  })) {
+                    this.state.selected.splice(x, 1);
+                    this.setState({
+                      open: true,
+                    });
+                  }
+                }
               }
             }}
           />);
         } else {
-          button = (<RaisedButton disabled />);
+          let selected = false;
+          for (let x = 0; x < 4; x += 1) {
+            if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
+              room: this.state.rooms[i].room,
+              time: time.time,
+            })) {
+              selected = true;
+            }
+          }
+          if (selected === false) {
+            // button = (<RaisedButton disabled />);
+            button = (<Checkbox
+              label={time.time}
+              disabled
+            />);
+          } else {
+            button = (<Checkbox
+              label={time.time}
+              onCheck={(event, isInputChecked) => {
+                if (isInputChecked) {
+                  this.state.selected.push({
+                    room: this.state.rooms[i].room,
+                    time: time.time,
+                  });
+                  this.setState({
+                    open: true,
+                  });
+                } else if (!isInputChecked) {
+                  for (let x = 0; x < 4; x += 1) {
+                    if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
+                      room: this.state.rooms[i].room,
+                      time: time.time,
+                    })) {
+                      this.state.selected.splice(x, 1);
+                      this.setState({
+                        open: true,
+                      });
+                    }
+                  }
+                }
+              }}
+            />);
+          }
         }
         return (
           <div className="time-row" key={time.time}>
@@ -143,7 +200,7 @@ class Main extends Component {
         );
       });
       return (
-        <div className="room-row" key={room.room}>
+        <div className="room-row" key={room.room} style={styles.roomRow}>
           <FlatButton
             label={room.room}
             labelPosition="before"
