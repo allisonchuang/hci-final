@@ -5,19 +5,12 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import Popover from 'material-ui/Popover';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-<<<<<<< 1228da3dd6c13f8a561d2da6b9d867e9b50cb743
 import Paper from 'material-ui/Paper';
-=======
->>>>>>> added time slider
 import Checkbox from 'material-ui/Checkbox';
 import DatePicker from 'material-ui/DatePicker';
 import Snackbar from 'material-ui/Snackbar';
-<<<<<<< 1228da3dd6c13f8a561d2da6b9d867e9b50cb743
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
-
-=======
 import Slider from 'material-ui/Slider';
->>>>>>> added time slider
 import '../style.scss';
 
 const styles = {
