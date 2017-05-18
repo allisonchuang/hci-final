@@ -325,8 +325,8 @@ class Main extends Component {
             <div style={styles.specRow}>
               <Slider
                 min={0}
-                max={24}
-                step={0.5}
+                max={48}
+                step={1}
                 style={{ width: 800 }}
                 value={this.state.timeSlider}
                 onChange={(event) => { this.handleTimeSlider(event); }}
