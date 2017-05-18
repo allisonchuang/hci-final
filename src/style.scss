@@ -8,3 +8,13 @@ body {
 .active {
   color: pink;
 }
+
+.room-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.time-row {
+  display: flex;
+  flex-direction: row;
+}
