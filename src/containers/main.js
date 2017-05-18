@@ -7,9 +7,10 @@ import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
+import DatePicker from 'material-ui/DatePicker';
 import Snackbar from 'material-ui/Snackbar';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
-
+import Slider from 'material-ui/Slider';
 import '../style.scss';
 
 const styles = {
@@ -17,6 +18,13 @@ const styles = {
     color: '#FFFFFF',
   },
   specs: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    marginTop: 20,
+  },
+  specRow: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -32,6 +40,13 @@ const styles = {
   },
   menuItem: {
     margin: 0,
+  },
+  datepicker: {
+    marginLeft: 20,
+    backgroundColor: '#f1f2f3',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   selected: {
     color: green800,
@@ -57,6 +72,8 @@ const styles = {
 class Main extends Component {
   constructor(props) {
     super(props);
+
+    const today = new Date();
 
     this.state = {
       show: '',
@@ -115,6 +132,8 @@ class Main extends Component {
       ],
       selected: [],
       open: false,
+      today,
+      timeSlider: 0,
     };
   }
 
@@ -142,6 +161,12 @@ class Main extends Component {
     this.setState({
       infoOpen: true,
       anchorEl: event.currentTarget,
+    });
+  }
+
+  handleTimeSlider(event) {
+    this.setState({
+      timeSlider: event.target.value,
     });
   }
 
@@ -251,40 +276,62 @@ class Main extends Component {
       <MuiThemeProvider>
         <div>
           <div style={styles.specs}>
-            <div>Location: </div>
-            <DropDownMenu
-              value={this.state.location}
-              labelStyle={styles.label}
-              onChange={(event, index, value) => { this.setState({ location: value }); }}
-              style={styles.menu}
-              iconStyle={styles.menuIcon}
-              menuItemStyle={styles.menuItem}
-              menuStyle={styles.dropDown}
-              selectedMenuItemStyle={styles.selected}
-              autoWidth={false}
-            >
-              <MenuItem primaryText="Baker Berry Library" value={1} />
-              <MenuItem primaryText="Feldberg Library" value={2} />
-              <MenuItem primaryText="Mathews-Fuller Library" value={3} />
-            </DropDownMenu>
-            <div style={styles.capacity}>Capacity: </div>
-            <DropDownMenu
-              value={this.state.capacity}
-              labelStyle={styles.label}
-              onChange={(event, index, value) => { this.setState({ capacity: value }); }}
-              style={styles.menu}
-              iconStyle={styles.menuIcon}
-              menuItemStyle={styles.menuItem}
-              menuStyle={styles.dropDown}
-              selectedMenuItemStyle={styles.selected}
-              autoWidth={false}
-            >
-              <MenuItem primaryText="For any number of people" value={1} />
-              <MenuItem primaryText="1 – 4 people" value={2} />
-              <MenuItem primaryText="5 – 8 people" value={3} />
-              <MenuItem primaryText="9 – 12 people" value={4} />
-              <MenuItem primaryText="13+ people" value={5} />
-            </DropDownMenu>
+            <div style={styles.specRow}>
+              <div>Location: </div>
+              <DropDownMenu
+                value={this.state.location}
+                labelStyle={styles.label}
+                onChange={(event, index, value) => { this.setState({ location: value }); }}
+                style={styles.menu}
+                iconStyle={styles.menuIcon}
+                menuItemStyle={styles.menuItem}
+                menuStyle={styles.dropDown}
+                selectedMenuItemStyle={styles.selected}
+                autoWidth={false}
+              >
+                <MenuItem primaryText="Baker Berry Library" value={1} />
+                <MenuItem primaryText="Feldberg Library" value={2} />
+                <MenuItem primaryText="Mathews-Fuller Library" value={3} />
+              </DropDownMenu>
+              <div style={styles.capacity}>Capacity: </div>
+              <DropDownMenu
+                value={this.state.capacity}
+                labelStyle={styles.label}
+                onChange={(event, index, value) => { this.setState({ capacity: value }); }}
+                style={styles.menu}
+                iconStyle={styles.menuIcon}
+                menuItemStyle={styles.menuItem}
+                menuStyle={styles.dropDown}
+                selectedMenuItemStyle={styles.selected}
+                autoWidth={false}
+              >
+                <MenuItem primaryText="For any number of people" value={1} />
+                <MenuItem primaryText="1 – 4 people" value={2} />
+                <MenuItem primaryText="5 – 8 people" value={3} />
+                <MenuItem primaryText="9 – 12 people" value={4} />
+                <MenuItem primaryText="13+ people" value={5} />
+              </DropDownMenu>
+            </div>
+            <div style={styles.specRow}>
+              <div>Date: </div>
+              <DatePicker
+                defaultDate={this.state.today}
+                labelStyle={styles.label}
+                container="inline"
+                mode="landscape"
+                style={styles.datepicker}
+              />
+            </div>
+            <div style={styles.specRow}>
+              <Slider
+                min={0}
+                max={48}
+                step={1}
+                style={{ width: 800 }}
+                value={this.state.timeSlider}
+                onChange={(event) => { this.handleTimeSlider(event); }}
+              />
+            </div>
           </div>
           <div>
             {this.renderRooms()}
