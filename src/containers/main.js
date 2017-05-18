@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { green800 } from 'material-ui/styles/colors';
 import DropDownMenu from 'material-ui/DropDownMenu';
+import Popover from 'material-ui/Popover';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import Snackbar from 'material-ui/Snackbar';
+import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
+
 import '../style.scss';
 
 const styles = {
@@ -42,6 +45,13 @@ const styles = {
   roomRow: {
     marginTop: 30,
   },
+  roomInfo: {
+    height: 100,
+    width: 100,
+    margin: 0,
+    textAlign: 'center',
+    display: 'inline-block',
+  },
 };
 
 class Main extends Component {
@@ -49,11 +59,14 @@ class Main extends Component {
     super(props);
 
     this.state = {
+      show: '',
+      infoOpen: false,
       location: 1,
       capacity: 1,
       rooms: [
         {
           room: 'Berry 171a',
+          info: { image: 'room', description: 'description 1', library: 'Baker-Berry', capacity: '4' },
           times: [
             {
               time: '8am - 8:30am',
@@ -79,6 +92,7 @@ class Main extends Component {
         },
         {
           room: 'Berry 171b',
+          info: { image: 'room', description: 'description 2', library: 'Baker-Berry', capacity: '4' },
           times: [
             {
               time: '8am - 8:30am',
@@ -117,8 +131,23 @@ class Main extends Component {
     });
   }
 
+  handleRequestCloseInfo(event) {
+    this.setState({
+      infoOpen: false,
+    });
+  }
+
+  handleTouchTap(event) {
+    event.preventDefault();
+    this.setState({
+      infoOpen: true,
+      anchorEl: event.currentTarget,
+    });
+  }
+
   renderRooms() {
     const roomgrid = this.state.rooms.map((room, i) => {
+      // const roomId = this.state.rooms[i].room.replace(/\s+/g, '');
       const times = room.times.map((time) => {
         let button = '';
         if (time.available && (this.state.selected.length < 4)) {
@@ -200,13 +229,17 @@ class Main extends Component {
         );
       });
       return (
-        <div className="room-row" key={room.room} style={styles.roomRow}>
-          <FlatButton
-            label={room.room}
-            labelPosition="before"
-            primary
-          />
-          {times}
+        <div>
+          <div className="room-row" key={room.room} style={styles.roomRow}>
+            <FlatButton
+              label={room.room}
+              labelPosition="before"
+              primary
+              icon={<ExpandMore />}
+              onTouchTap={(event) => { this.state.show = room.info.description; this.handleTouchTap(event); }}
+            />
+            {times}
+          </div>
         </div>
       );
     });
@@ -261,8 +294,19 @@ class Main extends Component {
             message={`You've booked ${this.state.selected.length} time slots`}
             action="Submit"
             onActionTouchTap={this.handleActionTouchTap}
-            onRequestClose={this.handleRequestClose}
+            onRequestClose={(event) => { this.handleRequestClose(); }}
           />
+          <Popover
+            open={this.state.infoOpen}
+            anchorEl={this.state.anchorEl}
+            anchorOrigin={{ horizontal: 'middle', vertical: 'bottom' }}
+            targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+            onRequestClose={(event) => { this.handleRequestCloseInfo(event); }}
+          >
+            <Paper style={styles.roomInfo} zDepth={2} rounded={false}>
+              {this.state.show}
+            </Paper>
+          </Popover>
         </div>
       </MuiThemeProvider>
     );
