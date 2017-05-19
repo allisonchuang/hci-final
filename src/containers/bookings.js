@@ -67,10 +67,18 @@ class Bookings extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { drawerOpen: false, openBooking: false };
+    this.state = { drawerOpen: false, openBooking: false, show: {}, bookings: [] };
     this.mapBookings = this.mapBookings.bind(this);
     this.mapAllBookings = this.mapAllBookings.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
+    this.renderPopover = this.renderPopover.bind(this);
+    this.updateUser = this.updateUser.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (JSON.stringify(this.props.bookings) !== JSON.stringify(nextProps.bookings)) {
+      this.updateUser();
+    }
   }
 
   handleRequestClose() {
@@ -79,12 +87,16 @@ class Bookings extends Component {
     });
   }
 
-  handleTouchTap(event) {
+  handleTouchTap2(event) {
     event.preventDefault();
     this.setState({
       openBooking: true,
       anchorEl: event.currentTarget,
     });
+  }
+
+  updateUser() {
+    console.log('hey');
   }
 
   deleteBook(booking) {
@@ -113,7 +125,6 @@ class Bookings extends Component {
   }
 
   mapAllBookings() {
-    console.log(this.props.bookings);
     const allBookings = this.props.bookings.map((booking) => {
       const string = `${booking[0].date}`;
       return (
@@ -126,21 +137,13 @@ class Bookings extends Component {
                 labelPosition="before"
                 primary
                 icon={<ExpandMore style={styles.dropDown} />}
-                onTouchTap={(event) => { this.handleTouchTap(event, booking); }}
+                onTouchTap={(event) => { this.state.show = JSON.stringify(booking); this.handleTouchTap2(event, booking); }}
               />
               <IconButton onTouchTap={(event) => {
                 this.deleteBook(booking);
               }} style={styles.iconClick} iconStyle={styles.iconX}
               ><NavigationClose /></IconButton>
-              <Popover
-                open={this.state.openBooking}
-                anchorEl={this.state.anchorEl}
-                anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-                targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-                onRequestClose={(event) => { this.handleRequestClose(event); }}
-              >
-                {this.mapBookings(booking)}
-              </Popover>
+              {this.renderPopover(booking)}
             </div>
           </MuiThemeProvider>
         </div>
@@ -149,6 +152,26 @@ class Bookings extends Component {
     return (
       <div>{ allBookings }</div>
     );
+  }
+
+  renderPopover(booking) {
+    if (this.state.show === JSON.stringify(booking)) {
+      return (
+        <div>
+          <Popover
+            open={this.state.openBooking}
+            anchorEl={this.state.anchorEl}
+            anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+            targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+            onRequestClose={(event) => { this.handleRequestClose(event); }}
+          >
+            {this.mapBookings(booking)}
+          </Popover>
+        </div>
+      );
+    } else {
+      return <div />;
+    }
   }
 
   render() {
