@@ -373,7 +373,7 @@ class Main extends Component {
           </div>
           <Snackbar
             open={this.state.open && (this.state.selected.length > 0)}
-            message={`You've booked ${this.state.selected.length} time slots`}
+            message={`You've selected ${this.state.selected.length} time slots`}
             action="Submit"
             onActionTouchTap={() => { this.handleActionTouchTap(); }}
             onRequestClose={(event) => { this.handleRequestClose(); }}
