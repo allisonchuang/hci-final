@@ -97,7 +97,7 @@ const roomsArray = [
       },
       {
         time: '8:30am - 9am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
@@ -112,7 +112,7 @@ const roomsArray = [
       },
       {
         time: '10am - 10:30am',
-        available: false,
+        available: true,
         selected: false,
       },
       {
@@ -122,7 +122,7 @@ const roomsArray = [
       },
       {
         time: '11am - 11:30am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
@@ -256,7 +256,8 @@ const roomsArray = [
     room: 'Berry 171b',
     info: {
       image: '/images/171b.jpg',
-      description: 'description 2',
+      description: `Located behind the Information and Reference Desk --
+        Equipment: Flat screen monitor, white board`,
       library: 'Baker-Berry',
       floor: 1,
       capacity: 6,
@@ -344,12 +345,12 @@ const roomsArray = [
       },
       {
         time: '8am - 8:30am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
         time: '8:30am - 9am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
@@ -359,12 +360,12 @@ const roomsArray = [
       },
       {
         time: '9:30am - 10am',
-        available: false,
+        available: true,
         selected: false,
       },
       {
         time: '10am - 10:30am',
-        available: false,
+        available: true,
         selected: false,
       },
       {
@@ -374,7 +375,7 @@ const roomsArray = [
       },
       {
         time: '11am - 11:30am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
@@ -507,8 +508,9 @@ const roomsArray = [
   {
     room: 'Berry 171C',
     info: {
-      image: 'room',
-      description: 'description 3',
+      image: '/images/171c.jpg',
+      description: `Located behind the Information and Reference Desk --
+        Equipment: Flat screen monitor, white board`,
       library: 'Baker-Berry',
       floor: 1,
       capacity: 6,
@@ -611,17 +613,17 @@ const roomsArray = [
       },
       {
         time: '9:30am - 10am',
-        available: false,
+        available: true,
         selected: false,
       },
       {
         time: '10am - 10:30am',
-        available: false,
+        available: true,
         selected: false,
       },
       {
         time: '10:30am - 11am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
@@ -759,7 +761,7 @@ const roomsArray = [
   {
     room: 'Berry 178K',
     info: {
-      image: 'room',
+      image: '/images/178k.jpg',
       description: 'description 4',
       library: 'Baker-Berry',
       floor: 1,
@@ -858,7 +860,7 @@ const roomsArray = [
       },
       {
         time: '9am - 9:30am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
@@ -873,7 +875,7 @@ const roomsArray = [
       },
       {
         time: '10:30am - 11am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
@@ -1110,12 +1112,12 @@ const roomsArray = [
       },
       {
         time: '9am - 9:30am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
         time: '9:30am - 10am',
-        available: false,
+        available: true,
         selected: false,
       },
       {
@@ -1372,17 +1374,17 @@ const roomsArray = [
       },
       {
         time: '10am - 10:30am',
-        available: false,
+        available: true,
         selected: false,
       },
       {
         time: '10:30am - 11am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
         time: '11am - 11:30am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
@@ -1604,7 +1606,7 @@ const roomsArray = [
       },
       {
         time: '8am - 8:30am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
@@ -1614,7 +1616,7 @@ const roomsArray = [
       },
       {
         time: '9am - 9:30am',
-        available: true,
+        available: false,
         selected: false,
       },
       {
