@@ -72,13 +72,6 @@ class Bookings extends Component {
     this.mapAllBookings = this.mapAllBookings.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
     this.renderPopover = this.renderPopover.bind(this);
-    this.updateUser = this.updateUser.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (JSON.stringify(this.props.bookings) !== JSON.stringify(nextProps.bookings)) {
-      this.updateUser();
-    }
   }
 
   handleRequestClose() {
@@ -93,10 +86,6 @@ class Bookings extends Component {
       openBooking: true,
       anchorEl: event.currentTarget,
     });
-  }
-
-  updateUser() {
-    console.log('hey');
   }
 
   deleteBook(booking) {
