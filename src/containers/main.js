@@ -266,6 +266,11 @@ class Main extends Component {
       <MuiThemeProvider>
         <div>
           <div style={styles.specs}>
+            <div style={styles.instructions}>
+              Use the filters below to narrow down your room search. To book,
+              click on the checkboxes corresponding to your desired room and time.
+              You are allowed a maximum of 4 half-hour slots per day.
+            </div>
             <div style={styles.specRow}>
               <div>Location </div>
               <DropDownMenu

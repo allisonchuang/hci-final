@@ -1013,7 +1013,7 @@ const roomsArray = [
   {
     room: 'Berry 367',
     info: {
-      image: 'room',
+      image: '/images/367.jpg',
       description: 'description 5',
       library: 'Baker-Berry',
       floor: 3,
@@ -1265,7 +1265,7 @@ const roomsArray = [
   {
     room: 'Berry 368',
     info: {
-      image: 'room',
+      image: '/images/368.jpg',
       description: 'description 3',
       library: 'Baker-Berry',
       floor: 3,
@@ -1517,7 +1517,7 @@ const roomsArray = [
   {
     room: 'Berry 405',
     info: {
-      image: 'room',
+      image: '/images/405.jpg',
       description: 'description 3',
       library: 'Baker-Berry',
       floor: 4,
@@ -1769,7 +1769,7 @@ const roomsArray = [
   {
     room: 'Berry 406',
     info: {
-      image: 'room',
+      image: '/images/406.jpg',
       description: 'description 3',
       library: 'Baker-Berry',
       floor: 4,
@@ -2021,7 +2021,7 @@ const roomsArray = [
   {
     room: 'Novack 72',
     info: {
-      image: 'room',
+      image: '/images/72.jpg',
       description: 'description 3',
       library: 'Baker-Berry',
       floor: 0,
@@ -2273,7 +2273,7 @@ const roomsArray = [
   {
     room: 'Novack 73',
     info: {
-      image: 'room',
+      image: '/images/73.jpg',
       description: 'description 3',
       library: 'Baker-Berry',
       floor: 0,

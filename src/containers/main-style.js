@@ -11,6 +11,11 @@ const styles = {
     flexDirection: 'column',
     marginTop: 20,
   },
+  instructions: {
+    width: 800,
+    textAlign: 'center',
+    fontSize: 13,
+  },
   specRow: {
     display: 'flex',
     justifyContent: 'center',
