@@ -3,7 +3,8 @@ const roomsArray = [
     room: 'Berry 171a',
     info: {
       image: '/images/171a.jpg',
-      description: 'description 1',
+      description: `Located behind the Information and Reference Desk --
+        Equipment: Flat screen monitor, white board`,
       library: 'Baker-Berry',
       floor: 1,
       capacity: 6,
@@ -254,7 +255,7 @@ const roomsArray = [
   {
     room: 'Berry 171b',
     info: {
-      image: 'room',
+      image: '/images/171b.jpg',
       description: 'description 2',
       library: 'Baker-Berry',
       floor: 1,

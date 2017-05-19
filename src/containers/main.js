@@ -205,7 +205,9 @@ class Main extends Component {
       if (((this.state.floor === -1)
           || (this.state.floor === room.info.floor))
           && ((this.state.capacity === -1)
-          || (this.state.capacity < room.info.capacity))) {
+          || (this.state.capacity < room.info.capacity))
+          && ((this.state.location === -1)
+          || (this.state.location === room.info.library))) {
         return (
           <div>
             <div className="room-row" key={room.room} style={styles.roomRow}>
