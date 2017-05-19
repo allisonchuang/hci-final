@@ -31,6 +31,10 @@ const styles = {
     alignItems: 'center',
     marginTop: 20,
   },
+  specCol: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   menu: {
     marginLeft: 20,
     width: 300,
@@ -49,12 +53,20 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  room: {
+    width: 200,
+    flexShrink: 0,
+  },
   times: {
     overflow: 'auto',
     display: 'flex',
-    justifyContent: 'space-between',
     alignItems: 'top',
     flexDirection: 'row',
+    marginRight: 50,
+  },
+  time: {
+    fontSize: 13,
+    flexShrink: 0,
   },
   selected: {
     color: green800,
@@ -74,6 +86,15 @@ const styles = {
     margin: 0,
     textAlign: 'center',
     display: 'inline-block',
+  },
+  timeLabels: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    fontSize: 13,
+    width: 800,
+    margin: 0,
+    padding: 0,
   },
 };
 
@@ -200,20 +221,104 @@ class Main extends Component {
           info: { image: 'room', description: 'description 2', library: 'Baker-Berry', capacity: '4' },
           times: [
             {
+              time: '12am - 12:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '12:30am - 1am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '1am - 1:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '1:30am - 2am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '2am - 2:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '2:30am - 3am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '3am - 3:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '3:30am - 4am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '4am - 4:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '4:30am - 5am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '5am - 5:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '5:30am - 6am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '6am - 6:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '6:30am - 7am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '7am - 7:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '7:30am - 8am',
+              available: true,
+              selected: false,
+            },
+            {
               time: '8am - 8:30am',
               available: true,
+              selected: false,
             },
             {
               time: '8:30am - 9am',
               available: true,
+              selected: false,
             },
             {
               time: '9:30am - 10am',
               available: false,
+              selected: false,
             },
             {
               time: '10:30am - 11am',
               available: true,
+              selected: false,
             },
           ],
         },
@@ -221,7 +326,7 @@ class Main extends Component {
       selected: [],
       open: false,
       today,
-      timeSlider: 0,
+      timeSlider: 16,
       modalOpen: false,
     };
   }
@@ -350,7 +455,7 @@ class Main extends Component {
           }
         }
         return (
-          <div key={time.time}>
+          <div key={time.time} style={styles.time}>
             {button}
           </div>
         );
@@ -360,6 +465,7 @@ class Main extends Component {
           <div className="room-row" key={room.room} style={styles.roomRow}>
             <FlatButton
               label={room.room}
+              style={styles.room}
               labelPosition="before"
               primary
               icon={<ExpandMore />}
@@ -402,7 +508,7 @@ class Main extends Component {
         <div>
           <div style={styles.specs}>
             <div style={styles.specRow}>
-              <div>Location: </div>
+              <div>Location </div>
               <DropDownMenu
                 value={this.state.location}
                 labelStyle={styles.label}
@@ -418,7 +524,7 @@ class Main extends Component {
                 <MenuItem primaryText="Feldberg Library" value={2} />
                 <MenuItem primaryText="Mathews-Fuller Library" value={3} />
               </DropDownMenu>
-              <div style={styles.capacity}>Capacity: </div>
+              <div style={styles.capacity}>Capacity </div>
               <DropDownMenu
                 value={this.state.capacity}
                 labelStyle={styles.label}
@@ -438,7 +544,7 @@ class Main extends Component {
               </DropDownMenu>
             </div>
             <div style={styles.specRow}>
-              <div>Date: </div>
+              <div>Date </div>
               <DatePicker
                 defaultDate={this.state.today}
                 container="inline"
@@ -446,7 +552,31 @@ class Main extends Component {
                 style={styles.datepicker}
               />
             </div>
-            <div style={styles.specRow}>
+            <div style={styles.specCol}>
+              <div>Start Time </div>
+              <div style={styles.timeLabels}>
+                <div>
+                  12am
+                </div>
+                <div>
+                  4am
+                </div>
+                <div>
+                  8am
+                </div>
+                <div>
+                  12pm
+                </div>
+                <div>
+                  4pm
+                </div>
+                <div>
+                  8pm
+                </div>
+                <div>
+                  12am
+                </div>
+              </div>
               <Slider
                 min={0}
                 max={48}
