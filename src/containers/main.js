@@ -49,6 +49,13 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  times: {
+    overflow: 'auto',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'top',
+    flexDirection: 'row',
+  },
   selected: {
     color: green800,
   },
@@ -86,6 +93,86 @@ class Main extends Component {
           room: 'Berry 171a',
           info: { image: 'room', description: 'description 1', library: 'Baker-Berry', capacity: '4' },
           times: [
+            {
+              time: '12am - 12:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '12:30am - 1am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '1am - 1:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '1:30am - 2am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '2am - 2:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '2:30am - 3am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '3am - 3:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '3:30am - 4am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '4am - 4:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '4:30am - 5am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '5am - 5:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '5:30am - 6am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '6am - 6:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '6:30am - 7am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '7am - 7:30am',
+              available: true,
+              selected: false,
+            },
+            {
+              time: '7:30am - 8am',
+              available: true,
+              selected: false,
+            },
             {
               time: '8am - 8:30am',
               available: true,
@@ -172,91 +259,98 @@ class Main extends Component {
     });
   }
 
-  handleTimeSlider(event) {
+  handleTimeSlider(event, value) {
     this.setState({
-      timeSlider: event.target.value,
+      timeSlider: value,
     });
   }
 
   renderRooms() {
     const roomgrid = this.state.rooms.map((room, i) => {
       // const roomId = this.state.rooms[i].room.replace(/\s+/g, '');
-      const times = room.times.map((time) => {
+      const times = room.times.map((time, j) => {
         let button = '';
-        if (time.available && (this.state.selected.length < 4)) {
-          button = (<Checkbox
-            label={time.time}
-            onCheck={(event, isInputChecked) => {
-              if (isInputChecked) {
-                this.state.selected.push({
-                  room: this.state.rooms[i].room,
-                  time: time.time,
-                });
-                this.setState({
-                  open: true,
-                });
-              } else if (!isInputChecked) {
-                for (let x = 0; x < 4; x += 1) {
-                  if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
-                    room: this.state.rooms[i].room,
-                    time: time.time,
-                  })) {
-                    this.state.selected.splice(x, 1);
+        if (this.state.timeSlider <= j) {
+          if (time.available && (this.state.selected.length < 4)) {
+            button = (
+              <Checkbox
+                label={time.time}
+                onCheck={(event, isInputChecked) => {
+                  if (isInputChecked) {
+                    this.state.selected.push({
+                      room: this.state.rooms[i].room,
+                      time: time.time,
+                    });
                     this.setState({
                       open: true,
                     });
+                  } else if (!isInputChecked) {
+                    for (let x = 0; x < 4; x += 1) {
+                      if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
+                        room: this.state.rooms[i].room,
+                        time: time.time,
+                      })) {
+                        this.state.selected.splice(x, 1);
+                        this.setState({
+                          open: true,
+                        });
+                      }
+                    }
                   }
-                }
-              }
-            }}
-          />);
-        } else {
-          let selected = false;
-          for (let x = 0; x < 4; x += 1) {
-            if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
-              room: this.state.rooms[i].room,
-              time: time.time,
-            })) {
-              selected = true;
-            }
-          }
-          if (selected === false) {
-            // button = (<RaisedButton disabled />);
-            button = (<Checkbox
-              label={time.time}
-              disabled
-            />);
+                }}
+              />
+            );
           } else {
-            button = (<Checkbox
-              label={time.time}
-              onCheck={(event, isInputChecked) => {
-                if (isInputChecked) {
-                  this.state.selected.push({
-                    room: this.state.rooms[i].room,
-                    time: time.time,
-                  });
-                  this.setState({
-                    open: true,
-                  });
-                } else if (!isInputChecked) {
-                  for (let x = 0; x < 4; x += 1) {
-                    if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
-                      room: this.state.rooms[i].room,
-                      time: time.time,
-                    })) {
-                      this.state.selected.splice(x, 1);
+            let selected = false;
+            for (let x = 0; x < 4; x += 1) {
+              if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
+                room: this.state.rooms[i].room,
+                time: time.time,
+              })) {
+                selected = true;
+              }
+            }
+            if (selected === false) {
+              button = (
+                <Checkbox
+                  label={time.time}
+                  disabled
+                />
+              );
+            } else {
+              button = (
+                <Checkbox
+                  label={time.time}
+                  onCheck={(event, isInputChecked) => {
+                    if (isInputChecked) {
+                      this.state.selected.push({
+                        room: this.state.rooms[i].room,
+                        time: time.time,
+                      });
                       this.setState({
                         open: true,
                       });
+                    } else if (!isInputChecked) {
+                      for (let x = 0; x < 4; x += 1) {
+                        if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
+                          room: this.state.rooms[i].room,
+                          time: time.time,
+                        })) {
+                          this.state.selected.splice(x, 1);
+                          this.setState({
+                            open: true,
+                          });
+                        }
+                      }
                     }
-                  }
-                }
-              }}
-            />);
+                  }}
+                />
+              );
+            }
           }
         }
         return (
-          <div className="time-row" key={time.time}>
+          <div key={time.time}>
             {button}
           </div>
         );
@@ -271,7 +365,9 @@ class Main extends Component {
               icon={<ExpandMore />}
               onTouchTap={(event) => { this.state.show = room.info.description; this.handleTouchTap(event); }}
             />
-            {times}
+            <div style={styles.times}>
+              {times}
+            </div>
           </div>
         </div>
       );
@@ -345,7 +441,6 @@ class Main extends Component {
               <div>Date: </div>
               <DatePicker
                 defaultDate={this.state.today}
-                labelStyle={styles.label}
                 container="inline"
                 mode="landscape"
                 style={styles.datepicker}
@@ -358,7 +453,7 @@ class Main extends Component {
                 step={1}
                 style={{ width: 800 }}
                 value={this.state.timeSlider}
-                onChange={(event) => { this.handleTimeSlider(event); }}
+                onChange={(event, value) => { this.handleTimeSlider(event, value); }}
               />
             </div>
           </div>
