@@ -35,7 +35,7 @@ class Main extends Component {
       today,
       timeSlider: 16,
       modalOpen: false,
-      floor: -1,
+      floor: 1,
     };
     this.formatDate = this.formatDate.bind(this);
   }
@@ -257,6 +257,7 @@ class Main extends Component {
           this.setState({
             modalOpen: false,
           });
+          this.forceUpdate();
         }}
       />,
     ];
