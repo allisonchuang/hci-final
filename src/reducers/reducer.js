@@ -12,7 +12,9 @@ const initialState = {
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_BOOKING:
-      return state.all.push(action.payload.booking);
+      return Object.assign({}, state, {
+        all: [...state.all, action.payload.booking],
+      });
     default:
       return state;
   }

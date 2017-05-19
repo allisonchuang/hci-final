@@ -14,7 +14,7 @@ import Avatar from 'material-ui/Avatar';
 import { white, green500, green800, black } from 'material-ui/styles/colors';
 import AppBar from 'material-ui/AppBar';
 import '../style.scss';
-import Bookings from '../containers/bookings2';
+import Bookings from '../containers/bookings';
 
 injectTapEventPlugin();
 

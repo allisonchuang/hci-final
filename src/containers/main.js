@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { green800 } from 'material-ui/styles/colors';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -12,6 +14,7 @@ import Snackbar from 'material-ui/Snackbar';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import Slider from 'material-ui/Slider';
 import Dialog from 'material-ui/Dialog';
+import { addBooking } from '../actions';
 import '../style.scss';
 
 const styles = {
@@ -93,7 +96,7 @@ class Main extends Component {
       capacity: 1,
       rooms: [
         {
-          room: 'Berry 171a',
+          room: 'Berry 171B',
           info: { image: '/images/171a.jpg', description: 'description 1', library: 'Baker-Berry', capacity: '4' },
           times: [
             {
@@ -199,7 +202,7 @@ class Main extends Component {
           ],
         },
         {
-          room: 'Berry 171b',
+          room: 'Berry 171B',
           info: { image: '/images/171a.jpg', description: 'description 2', library: 'Baker-Berry', capacity: '4' },
           times: [
             {
@@ -227,6 +230,7 @@ class Main extends Component {
       timeSlider: 0,
       modalOpen: false,
     };
+    this.formatDate = this.formatDate.bind(this);
   }
 
   handleActionTouchTap() {
@@ -268,7 +272,34 @@ class Main extends Component {
     });
   }
 
+  formatDate() {
+    const weekday = new Array(7);
+    weekday[0] = 'Sunday';
+    weekday[1] = 'Monday';
+    weekday[2] = 'Tuesday';
+    weekday[3] = 'Wednesday';
+    weekday[4] = 'Thursday';
+    weekday[5] = 'Friday';
+    weekday[6] = 'Saturday';
+    const month = new Array(12);
+    month[0] = 'Jan';
+    month[1] = 'Feb';
+    month[2] = 'Mar';
+    month[3] = 'Apr';
+    month[4] = 'May';
+    month[5] = 'Jun';
+    month[6] = 'Jul';
+    month[7] = 'Aug';
+    month[8] = 'Sep';
+    month[9] = 'Oct';
+    month[10] = 'Nov';
+    month[11] = 'Dec';
+    const date = this.state.today;
+    return `${weekday[date.getDay()]}, ${month[date.getMonth()]} ${date.getDate()}`;
+  }
+
   renderRooms() {
+    const today = this.formatDate(this.state.today);
     const roomgrid = this.state.rooms.map((room, i) => {
       // const roomId = this.state.rooms[i].room.replace(/\s+/g, '');
       const times = room.times.map((time, j) => {
@@ -281,6 +312,7 @@ class Main extends Component {
                 onCheck={(event, isInputChecked) => {
                   if (isInputChecked) {
                     this.state.selected.push({
+                      date: today,
                       room: this.state.rooms[i].room,
                       time: time.time,
                     });
@@ -290,6 +322,7 @@ class Main extends Component {
                   } else if (!isInputChecked) {
                     for (let x = 0; x < 4; x += 1) {
                       if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
+                        date: today,
                         room: this.state.rooms[i].room,
                         time: time.time,
                       })) {
@@ -307,6 +340,7 @@ class Main extends Component {
             let selected = false;
             for (let x = 0; x < 4; x += 1) {
               if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
+                date: today,
                 room: this.state.rooms[i].room,
                 time: time.time,
               })) {
@@ -327,6 +361,7 @@ class Main extends Component {
                   onCheck={(event, isInputChecked) => {
                     if (isInputChecked) {
                       this.state.selected.push({
+                        date: today,
                         room: this.state.rooms[i].room,
                         time: time.time,
                       });
@@ -336,6 +371,7 @@ class Main extends Component {
                     } else if (!isInputChecked) {
                       for (let x = 0; x < 4; x += 1) {
                         if (JSON.stringify(this.state.selected[x]) === JSON.stringify({
+                          date: today,
                           room: this.state.rooms[i].room,
                           time: time.time,
                         })) {
@@ -393,6 +429,11 @@ class Main extends Component {
         label="Submit"
         primary
         onTouchTap={(event) => {
+          const bookings = [];
+          for (let i = 0; i < this.state.selected.length; i += 1) {
+            bookings.push(this.state.selected[i]);
+          }
+          this.props.add(bookings);
           this.setState({
             modalOpen: false,
           });
@@ -496,4 +537,10 @@ class Main extends Component {
   }
 }
 
-export default Main;
+const mapDispatchToProps = dispatch => (
+  {
+    add: booking => dispatch(addBooking(booking)),
+  }
+);
+
+export default withRouter(connect(null, mapDispatchToProps)(Main));
