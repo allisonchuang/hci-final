@@ -67,11 +67,14 @@ const styles = {
     marginTop: 30,
   },
   roomInfo: {
-    height: 100,
-    width: 100,
+    width: 300,
     margin: 0,
     textAlign: 'center',
-    display: 'inline-block',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  roomImage: {
+    width: 300,
   },
   timeLabels: {
     display: 'flex',
