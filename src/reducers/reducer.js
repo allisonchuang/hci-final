@@ -1,10 +1,7 @@
 import { ActionTypes } from '../actions';
 
 const initialState = {
-  all: [
-    [{ date: 'Wed, April 26', room: 'Berry 171A', time: '7:30-8:00pm' }, { date: 'Wed, April 26', room: 'Berry 171A', time: '8:00-8:30pm' }],
-    [{ date: 'Thurs, April 27', room: 'Berry 171B', time: '5:00-5:30pm' }, { date: 'Thurs, April 27', room: 'Berry 171B', time: '5:30-6:00pm' }],
-  ],
+  all: [],
   booking: [{ date: 'Wed, April 26', room: 'Berry 171A' },
     { date: 'Thurs, April 27', room: 'Berry 171A' }],
 };
@@ -14,6 +11,11 @@ const Reducer = (state = initialState, action) => {
     case ActionTypes.ADD_BOOKING:
       return Object.assign({}, state, {
         all: [...state.all, action.payload.booking],
+      });
+    case ActionTypes.DELETE_BOOKING:
+      action.payload.bookings.splice(action.payload.index, 1);
+      return Object.assign({}, state, {
+        all: action.payload.bookings,
       });
     default:
       return state;

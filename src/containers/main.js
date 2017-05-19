@@ -10,7 +10,7 @@ import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import DatePicker from 'material-ui/DatePicker';
 import Snackbar from 'material-ui/Snackbar';
-import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
+import ActionInfo from 'material-ui/svg-icons/action/info';
 import Slider from 'material-ui/Slider';
 import Dialog from 'material-ui/Dialog';
 import styles from './main-style';
@@ -201,6 +201,7 @@ class Main extends Component {
           </div>
         );
       });
+
       if (((this.state.floor === -1)
           || (this.state.floor === room.info.floor))
           && ((this.state.capacity === -1)
@@ -213,12 +214,13 @@ class Main extends Component {
                 style={styles.room}
                 labelPosition="before"
                 primary
-                icon={<ExpandMore />}
+                icon={<ActionInfo />}
                 onTouchTap={(event) => { this.state.show = room.info; this.handleTouchTap(event); }}
               />
               <div style={styles.times}>
                 {times}
               </div>
+
             </div>
           </div>
         );

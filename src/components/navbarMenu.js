@@ -83,7 +83,6 @@ class NavBarMenu extends Component {
           <AppBar
             iconElementLeft={<IconButton onTouchTap={this.handleToggle}><NavigationMenu /></IconButton>}
             title="Dartmouth Library Booking Site"
-            iconElementRight={<IconButton><MoreVertIcon /></IconButton>}
             style={styles.navbar}
           />
           <Drawer
