@@ -200,7 +200,7 @@ class Main extends Component {
         },
         {
           room: 'Berry 171b',
-          info: { image: 'room', description: 'description 2', library: 'Baker-Berry', capacity: '4' },
+          info: { image: '/images/171a.jpg', description: 'description 2', library: 'Baker-Berry', capacity: '4' },
           times: [
             {
               time: '8am - 8:30am',
