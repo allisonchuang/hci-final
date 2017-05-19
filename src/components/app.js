@@ -11,10 +11,6 @@ const FallBack = (props) => {
   return <div>URL Not Found</div>;
 };
 
-const Test = (props) => {
-  return <div> ID: {props.match.params.id} </div>;
-};
-
 const App = (props) => {
   return (
     <Router>
@@ -23,7 +19,6 @@ const App = (props) => {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route path="/about" component={About} />
-          <Route exact path="/test/:id" component={Test} />
           <Route component={FallBack} />
         </Switch>
       </div>
