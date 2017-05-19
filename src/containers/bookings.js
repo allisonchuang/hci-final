@@ -4,11 +4,12 @@ import { withRouter } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import IconButton from 'material-ui/IconButton';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import { green500, white } from 'material-ui/styles/colors';
+import { green500, white, black } from 'material-ui/styles/colors';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
+import FlatButton from 'material-ui/FlatButton';
+import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
+import Popover from 'material-ui/Popover';
 
 const styles = {
   selectedItem: {
@@ -32,9 +33,6 @@ const styles = {
     marginLeft: 0,
     width: 220,
   },
-  list: {
-    marginTop: -15,
-  },
   xButton: {
     marginTop: -12,
     marginLeft: -12,
@@ -51,15 +49,40 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
   },
+  booking: {
+    width: 210,
+    padding: 0,
+    marginTop: -5,
+    color: black,
+    textAlign: 'left',
+    display: 'flex',
+  },
+  dropDown: {
+    marginRight: 0,
+  },
 };
 
 class Bookings extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { drawerOpen: false, value: 1 };
+    this.state = { drawerOpen: false, openBooking: false };
     this.mapBookings = this.mapBookings.bind(this);
     this.mapAllBookings = this.mapAllBookings.bind(this);
+  }
+
+  handleRequestClose() {
+    this.setState({
+      openBooking: false,
+    });
+  }
+
+  handleTouchTap(event) {
+    event.preventDefault();
+    this.setState({
+      openBooking: true,
+      anchorEl: event.currentTarget,
+    });
   }
 
   mapBookings(books) {
@@ -67,7 +90,7 @@ class Bookings extends Component {
     bookings = books.map((booking) => {
       const string = `${booking.time} (${booking.room})`;
       return (
-        <div className="post-layout">
+        <div key={string} className="post-layout">
           <ListItem hoverColor={white} primaryText={string} style={styles.listItem} rightIcon={<IconButton iconStyle={styles.xButton}><NavigationClose /></IconButton>} />
         </div>
       );
@@ -80,23 +103,31 @@ class Bookings extends Component {
   }
 
   mapAllBookings() {
+    // if (!this.props.bookings) {
     const allBookings = this.props.bookings.map((booking) => {
       const string = `${booking[0].date}`;
       return (
         <div>
           <MuiThemeProvider>
             <div style={styles.bookingRow}>
-              <DropDownMenu
-                value={1}
-                labelStyle={styles.label}
-                onChange={this.handleChange}
-                style={styles.customWidth}
-              >
-                <MenuItem disabled label={string} value={1} style={styles.menuItem}>
-                  {this.mapBookings(booking)}
-                </MenuItem>
-              </DropDownMenu>
+              <FlatButton
+                style={styles.booking}
+                label={string}
+                labelPosition="before"
+                primary
+                icon={<ExpandMore style={styles.dropDown} />}
+                onTouchTap={(event) => { this.handleTouchTap(event, booking); }}
+              />
               <IconButton style={styles.iconClick} iconStyle={styles.iconX}><NavigationClose /></IconButton>
+              <Popover
+                open={this.state.openBooking}
+                anchorEl={this.state.anchorEl}
+                anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                onRequestClose={(event) => { this.handleRequestClose(event); }}
+              >
+                {this.mapBookings(booking)}
+              </Popover>
             </div>
           </MuiThemeProvider>
         </div>
@@ -105,6 +136,9 @@ class Bookings extends Component {
     return (
       <div>{ allBookings }</div>
     );
+    // } else {
+    //   return <div />;
+    // }
   }
 
   render() {

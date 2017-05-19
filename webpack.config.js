@@ -48,6 +48,19 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader', 'eslint-loader'],
       },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false',
+        ],
+      },
+      {
+        loader: 'file-loader',
+        query: {
+          useRelativePath: process.env.NODE_ENV === 'production',
+        },
+      },
     ],
   },
   plugins: [
