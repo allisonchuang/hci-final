@@ -27,14 +27,15 @@ class Main extends Component {
     this.state = {
       show: '',
       infoOpen: false,
-      location: 1,
-      capacity: 1,
+      location: -1,
+      capacity: -1,
       rooms: roomsArray,
       selected: [],
       open: false,
       today,
       timeSlider: 16,
       modalOpen: false,
+      floor: -1,
     };
     this.formatDate = this.formatDate.bind(this);
   }
@@ -200,23 +201,30 @@ class Main extends Component {
           </div>
         );
       });
-      return (
-        <div>
-          <div className="room-row" key={room.room} style={styles.roomRow}>
-            <FlatButton
-              label={room.room}
-              style={styles.room}
-              labelPosition="before"
-              primary
-              icon={<ExpandMore />}
-              onTouchTap={(event) => { this.state.show = room.info; this.handleTouchTap(event); }}
-            />
-            <div style={styles.times}>
-              {times}
+      if (((this.state.floor === -1)
+          || (this.state.floor === room.info.floor))
+          && ((this.state.capacity === -1)
+          || (this.state.capacity < room.info.capacity))) {
+        return (
+          <div>
+            <div className="room-row" key={room.room} style={styles.roomRow}>
+              <FlatButton
+                label={room.room}
+                style={styles.room}
+                labelPosition="before"
+                primary
+                icon={<ExpandMore />}
+                onTouchTap={(event) => { this.state.show = room.info; this.handleTouchTap(event); }}
+              />
+              <div style={styles.times}>
+                {times}
+              </div>
             </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (<div />);
+      }
     });
     return roomgrid;
   }
@@ -229,6 +237,7 @@ class Main extends Component {
         onTouchTap={(event) => {
           this.setState({
             modalOpen: false,
+            open: true,
           });
         }}
       />,
@@ -265,9 +274,10 @@ class Main extends Component {
                 selectedMenuItemStyle={styles.selected}
                 autoWidth={false}
               >
-                <MenuItem primaryText="Baker Berry Library" value={1} />
-                <MenuItem primaryText="Feldberg Library" value={2} />
-                <MenuItem primaryText="Mathews-Fuller Library" value={3} />
+                <MenuItem primaryText="All Libraries" value={-1} />
+                <MenuItem primaryText="Baker-Berry Library" value={'Baker-Berry'} />
+                <MenuItem primaryText="Feldberg Library" value={'Feldberg'} />
+                <MenuItem primaryText="Matthews-Fuller Library" value={'Matthews-Fuller'} />
               </DropDownMenu>
               <div style={styles.capacity}>Capacity </div>
               <DropDownMenu
@@ -281,11 +291,10 @@ class Main extends Component {
                 selectedMenuItemStyle={styles.selected}
                 autoWidth={false}
               >
-                <MenuItem primaryText="For any number of people" value={1} />
-                <MenuItem primaryText="1 – 4 people" value={2} />
-                <MenuItem primaryText="5 – 8 people" value={3} />
-                <MenuItem primaryText="9 – 12 people" value={4} />
-                <MenuItem primaryText="13+ people" value={5} />
+                <MenuItem primaryText="For any number of people" value={-1} />
+                <MenuItem primaryText="2+ people" value={2} />
+                <MenuItem primaryText="5+ people" value={5} />
+                <MenuItem primaryText="7+ people" value={7} />
               </DropDownMenu>
             </div>
             <div style={styles.specRow}>
@@ -333,6 +342,22 @@ class Main extends Component {
             </div>
           </div>
           <div>
+            <div>
+              <div>Current Floor </div>
+              <DropDownMenu value={this.state.floor} onChange={(event, index, value) => {
+                this.setState({
+                  floor: value,
+                });
+              }}
+              >
+                <MenuItem value={-1} primaryText="All" />
+                <MenuItem value={0} primaryText="Ground" />
+                <MenuItem value={1} primaryText="First" />
+                <MenuItem value={2} primaryText="Second" />
+                <MenuItem value={3} primaryText="Third" />
+                <MenuItem value={4} primaryText="Fourth" />
+              </DropDownMenu>
+            </div>
             {this.renderRooms()}
           </div>
           <Snackbar

@@ -2,10 +2,11 @@ const roomsArray = [
   {
     room: 'Berry 171a',
     info: {
-      image: 'room',
+      image: '/images/171a.jpg',
       description: 'description 1',
       library: 'Baker-Berry',
-      capacity: '6',
+      floor: 1,
+      capacity: 6,
     },
     times: [
       {
@@ -99,7 +100,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '9am - 9:30am',
+        available: true,
+        selected: false,
+      },
+      {
         time: '9:30am - 10am',
+        available: false,
+        selected: false,
+      },
+      {
+        time: '10am - 10:30am',
         available: false,
         selected: false,
       },
@@ -189,7 +200,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '7pm - 7:30pm',
+        available: true,
+        selected: false,
+      },
+      {
         time: '7:30pm - 8pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '8pm - 8:30pm',
         available: true,
         selected: false,
       },
@@ -215,6 +236,11 @@ const roomsArray = [
       },
       {
         time: '10:30pm - 11pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '11pm - 11:30pm',
         available: true,
         selected: false,
       },
@@ -231,7 +257,8 @@ const roomsArray = [
       image: 'room',
       description: 'description 2',
       library: 'Baker-Berry',
-      capacity: '6',
+      floor: 1,
+      capacity: 6,
     },
     times: [
       {
@@ -325,7 +352,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '9am - 9:30am',
+        available: true,
+        selected: false,
+      },
+      {
         time: '9:30am - 10am',
+        available: false,
+        selected: false,
+      },
+      {
+        time: '10am - 10:30am',
         available: false,
         selected: false,
       },
@@ -415,7 +452,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '7pm - 7:30pm',
+        available: true,
+        selected: false,
+      },
+      {
         time: '7:30pm - 8pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '8pm - 8:30pm',
         available: true,
         selected: false,
       },
@@ -441,6 +488,11 @@ const roomsArray = [
       },
       {
         time: '10:30pm - 11pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '11pm - 11:30pm',
         available: true,
         selected: false,
       },
@@ -457,7 +509,8 @@ const roomsArray = [
       image: 'room',
       description: 'description 3',
       library: 'Baker-Berry',
-      capacity: '6',
+      floor: 1,
+      capacity: 6,
     },
     times: [
       {
@@ -551,7 +604,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '9am - 9:30am',
+        available: true,
+        selected: false,
+      },
+      {
         time: '9:30am - 10am',
+        available: false,
+        selected: false,
+      },
+      {
+        time: '10am - 10:30am',
         available: false,
         selected: false,
       },
@@ -641,7 +704,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '7pm - 7:30pm',
+        available: true,
+        selected: false,
+      },
+      {
         time: '7:30pm - 8pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '8pm - 8:30pm',
         available: true,
         selected: false,
       },
@@ -667,6 +740,11 @@ const roomsArray = [
       },
       {
         time: '10:30pm - 11pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '11pm - 11:30pm',
         available: true,
         selected: false,
       },
@@ -683,7 +761,8 @@ const roomsArray = [
       image: 'room',
       description: 'description 4',
       library: 'Baker-Berry',
-      capacity: '6',
+      floor: 1,
+      capacity: 6,
     },
     times: [
       {
@@ -777,7 +856,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '9am - 9:30am',
+        available: true,
+        selected: false,
+      },
+      {
         time: '9:30am - 10am',
+        available: false,
+        selected: false,
+      },
+      {
+        time: '10am - 10:30am',
         available: false,
         selected: false,
       },
@@ -867,7 +956,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '7pm - 7:30pm',
+        available: true,
+        selected: false,
+      },
+      {
         time: '7:30pm - 8pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '8pm - 8:30pm',
         available: true,
         selected: false,
       },
@@ -893,6 +992,11 @@ const roomsArray = [
       },
       {
         time: '10:30pm - 11pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '11pm - 11:30pm',
         available: true,
         selected: false,
       },
@@ -909,7 +1013,8 @@ const roomsArray = [
       image: 'room',
       description: 'description 5',
       library: 'Baker-Berry',
-      capacity: '4',
+      floor: 3,
+      capacity: 4,
     },
     times: [
       {
@@ -1003,7 +1108,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '9am - 9:30am',
+        available: true,
+        selected: false,
+      },
+      {
         time: '9:30am - 10am',
+        available: false,
+        selected: false,
+      },
+      {
+        time: '10am - 10:30am',
         available: false,
         selected: false,
       },
@@ -1093,7 +1208,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '7pm - 7:30pm',
+        available: true,
+        selected: false,
+      },
+      {
         time: '7:30pm - 8pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '8pm - 8:30pm',
         available: true,
         selected: false,
       },
@@ -1119,6 +1244,11 @@ const roomsArray = [
       },
       {
         time: '10:30pm - 11pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '11pm - 11:30pm',
         available: true,
         selected: false,
       },
@@ -1135,7 +1265,8 @@ const roomsArray = [
       image: 'room',
       description: 'description 3',
       library: 'Baker-Berry',
-      capacity: '8',
+      floor: 3,
+      capacity: 8,
     },
     times: [
       {
@@ -1229,7 +1360,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '9am - 9:30am',
+        available: true,
+        selected: false,
+      },
+      {
         time: '9:30am - 10am',
+        available: false,
+        selected: false,
+      },
+      {
+        time: '10am - 10:30am',
         available: false,
         selected: false,
       },
@@ -1319,7 +1460,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '7pm - 7:30pm',
+        available: true,
+        selected: false,
+      },
+      {
         time: '7:30pm - 8pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '8pm - 8:30pm',
         available: true,
         selected: false,
       },
@@ -1345,6 +1496,11 @@ const roomsArray = [
       },
       {
         time: '10:30pm - 11pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '11pm - 11:30pm',
         available: true,
         selected: false,
       },
@@ -1361,7 +1517,8 @@ const roomsArray = [
       image: 'room',
       description: 'description 3',
       library: 'Baker-Berry',
-      capacity: '4',
+      floor: 4,
+      capacity: 4,
     },
     times: [
       {
@@ -1455,7 +1612,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '9am - 9:30am',
+        available: true,
+        selected: false,
+      },
+      {
         time: '9:30am - 10am',
+        available: false,
+        selected: false,
+      },
+      {
+        time: '10am - 10:30am',
         available: false,
         selected: false,
       },
@@ -1545,7 +1712,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '7pm - 7:30pm',
+        available: true,
+        selected: false,
+      },
+      {
         time: '7:30pm - 8pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '8pm - 8:30pm',
         available: true,
         selected: false,
       },
@@ -1571,6 +1748,11 @@ const roomsArray = [
       },
       {
         time: '10:30pm - 11pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '11pm - 11:30pm',
         available: true,
         selected: false,
       },
@@ -1587,7 +1769,8 @@ const roomsArray = [
       image: 'room',
       description: 'description 3',
       library: 'Baker-Berry',
-      capacity: '4',
+      floor: 4,
+      capacity: 4,
     },
     times: [
       {
@@ -1681,7 +1864,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '9am - 9:30am',
+        available: true,
+        selected: false,
+      },
+      {
         time: '9:30am - 10am',
+        available: false,
+        selected: false,
+      },
+      {
+        time: '10am - 10:30am',
         available: false,
         selected: false,
       },
@@ -1771,7 +1964,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '7pm - 7:30pm',
+        available: true,
+        selected: false,
+      },
+      {
         time: '7:30pm - 8pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '8pm - 8:30pm',
         available: true,
         selected: false,
       },
@@ -1797,6 +2000,11 @@ const roomsArray = [
       },
       {
         time: '10:30pm - 11pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '11pm - 11:30pm',
         available: true,
         selected: false,
       },
@@ -1813,7 +2021,8 @@ const roomsArray = [
       image: 'room',
       description: 'description 3',
       library: 'Baker-Berry',
-      capacity: '4',
+      floor: 0,
+      capacity: 4,
     },
     times: [
       {
@@ -1907,7 +2116,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '9am - 9:30am',
+        available: true,
+        selected: false,
+      },
+      {
         time: '9:30am - 10am',
+        available: false,
+        selected: false,
+      },
+      {
+        time: '10am - 10:30am',
         available: false,
         selected: false,
       },
@@ -1997,7 +2216,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '7pm - 7:30pm',
+        available: true,
+        selected: false,
+      },
+      {
         time: '7:30pm - 8pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '8pm - 8:30pm',
         available: true,
         selected: false,
       },
@@ -2023,6 +2252,11 @@ const roomsArray = [
       },
       {
         time: '10:30pm - 11pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '11pm - 11:30pm',
         available: true,
         selected: false,
       },
@@ -2039,7 +2273,8 @@ const roomsArray = [
       image: 'room',
       description: 'description 3',
       library: 'Baker-Berry',
-      capacity: '4',
+      floor: 0,
+      capacity: 4,
     },
     times: [
       {
@@ -2133,7 +2368,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '9am - 9:30am',
+        available: true,
+        selected: false,
+      },
+      {
         time: '9:30am - 10am',
+        available: false,
+        selected: false,
+      },
+      {
+        time: '10am - 10:30am',
         available: false,
         selected: false,
       },
@@ -2223,7 +2468,17 @@ const roomsArray = [
         selected: false,
       },
       {
+        time: '7pm - 7:30pm',
+        available: true,
+        selected: false,
+      },
+      {
         time: '7:30pm - 8pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '8pm - 8:30pm',
         available: true,
         selected: false,
       },
@@ -2249,6 +2504,11 @@ const roomsArray = [
       },
       {
         time: '10:30pm - 11pm',
+        available: true,
+        selected: false,
+      },
+      {
+        time: '11pm - 11:30pm',
         available: true,
         selected: false,
       },
