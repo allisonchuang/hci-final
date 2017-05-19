@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import IconButton from 'material-ui/IconButton';
@@ -10,6 +8,9 @@ import ListItem from 'material-ui/List/ListItem';
 import FlatButton from 'material-ui/FlatButton';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import Popover from 'material-ui/Popover';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { deleteBooking } from '../actions';
 
 const styles = {
   selectedItem: {
@@ -69,6 +70,7 @@ class Bookings extends Component {
     this.state = { drawerOpen: false, openBooking: false };
     this.mapBookings = this.mapBookings.bind(this);
     this.mapAllBookings = this.mapAllBookings.bind(this);
+    this.deleteBook = this.deleteBook.bind(this);
   }
 
   handleRequestClose() {
@@ -83,6 +85,14 @@ class Bookings extends Component {
       openBooking: true,
       anchorEl: event.currentTarget,
     });
+  }
+
+  deleteBook(booking) {
+    for (let x = 0; x < this.props.bookings.length; x += 1) {
+      if (JSON.stringify(this.props.bookings[x]) === JSON.stringify(booking)) {
+        this.props.deleteBooking(x, this.props.bookings);
+      }
+    }
   }
 
   mapBookings(books) {
@@ -103,7 +113,7 @@ class Bookings extends Component {
   }
 
   mapAllBookings() {
-    // if (!this.props.bookings) {
+    console.log(this.props.bookings);
     const allBookings = this.props.bookings.map((booking) => {
       const string = `${booking[0].date}`;
       return (
@@ -118,7 +128,10 @@ class Bookings extends Component {
                 icon={<ExpandMore style={styles.dropDown} />}
                 onTouchTap={(event) => { this.handleTouchTap(event, booking); }}
               />
-              <IconButton style={styles.iconClick} iconStyle={styles.iconX}><NavigationClose /></IconButton>
+              <IconButton onTouchTap={(event) => {
+                this.deleteBook(booking);
+              }} style={styles.iconClick} iconStyle={styles.iconX}
+              ><NavigationClose /></IconButton>
               <Popover
                 open={this.state.openBooking}
                 anchorEl={this.state.anchorEl}
@@ -136,9 +149,6 @@ class Bookings extends Component {
     return (
       <div>{ allBookings }</div>
     );
-    // } else {
-    //   return <div />;
-    // }
   }
 
   render() {
@@ -157,4 +167,10 @@ const mapStateToProps = state => (
   }
 );
 
-export default withRouter(connect(mapStateToProps, null)(Bookings));
+const mapDispatchToProps = dispatch => (
+  {
+    deleteBooking: (index, bookings) => dispatch(deleteBooking(index, bookings)),
+  }
+);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Bookings));
