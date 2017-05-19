@@ -92,6 +92,7 @@ class Bookings extends Component {
     for (let x = 0; x < this.props.bookings.length; x += 1) {
       if (JSON.stringify(this.props.bookings[x]) === JSON.stringify(booking)) {
         this.props.deleteBooking(x, this.props.bookings);
+        this.forceUpdate();
       }
     }
   }

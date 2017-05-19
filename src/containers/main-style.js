@@ -38,6 +38,27 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    textAlign: 'center',
+    width: 250,
+  },
+  dateText: {
+    marginLeft: 80,
+    marginRight: 80,
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  floors: {
+    marginLeft: 50,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  chosenFloor: {
+    color: green800,
+  },
+  floorDropdown: {
+    marginTop: -10,
   },
   room: {
     width: 200,

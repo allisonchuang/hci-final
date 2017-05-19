@@ -306,6 +306,7 @@ class Main extends Component {
                 container="inline"
                 mode="landscape"
                 style={styles.datepicker}
+                textFieldStyle={styles.dateText}
               />
             </div>
             <div style={styles.specCol}>
@@ -344,9 +345,9 @@ class Main extends Component {
             </div>
           </div>
           <div>
-            <div>
+            <div style={styles.floors}>
               <div>Current Floor </div>
-              <DropDownMenu value={this.state.floor} onChange={(event, index, value) => {
+              <DropDownMenu style={styles.floorDropdown} value={this.state.floor} selectedMenuItemStyle={styles.chosenFloor} onChange={(event, index, value) => {
                 this.setState({
                   floor: value,
                 });
