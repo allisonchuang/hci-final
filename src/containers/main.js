@@ -69,11 +69,14 @@ const styles = {
     marginTop: 30,
   },
   roomInfo: {
-    height: 100,
-    width: 100,
     margin: 0,
+    width: 300,
     textAlign: 'center',
-    display: 'inline-block',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  roomImage: {
+    width: 300,
   },
 };
 
@@ -91,7 +94,7 @@ class Main extends Component {
       rooms: [
         {
           room: 'Berry 171a',
-          info: { image: 'room', description: 'description 1', library: 'Baker-Berry', capacity: '4' },
+          info: { image: '/images/171a.jpg', description: 'description 1', library: 'Baker-Berry', capacity: '4' },
           times: [
             {
               time: '12am - 12:30am',
@@ -363,7 +366,7 @@ class Main extends Component {
               labelPosition="before"
               primary
               icon={<ExpandMore />}
-              onTouchTap={(event) => { this.state.show = room.info.description; this.handleTouchTap(event); }}
+              onTouchTap={(event) => { this.state.show = room.info; this.handleTouchTap(event); }}
             />
             <div style={styles.times}>
               {times}
@@ -483,7 +486,8 @@ class Main extends Component {
             onRequestClose={(event) => { this.handleRequestCloseInfo(event); }}
           >
             <Paper style={styles.roomInfo} zDepth={2} rounded={false}>
-              {this.state.show}
+              <img src={`${this.state.show.image}`} style={styles.roomImage} alt="hello" />
+              {this.state.show.description}
             </Paper>
           </Popover>
         </div>
