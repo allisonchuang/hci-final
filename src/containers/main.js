@@ -11,6 +11,7 @@ import DatePicker from 'material-ui/DatePicker';
 import Snackbar from 'material-ui/Snackbar';
 import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
 import Slider from 'material-ui/Slider';
+import Dialog from 'material-ui/Dialog';
 import '../style.scss';
 
 const styles = {
@@ -134,20 +135,27 @@ class Main extends Component {
       open: false,
       today,
       timeSlider: 0,
+      modalOpen: false,
     };
   }
 
   handleActionTouchTap() {
     this.setState({
       open: false,
+      modalOpen: true,
     });
-    // use modal
   }
 
   handleRequestClose() {
-    this.setState({
-      open: false,
-    });
+    if (this.state.selected.length > 0) {
+      this.setState({
+        open: true,
+      });
+    } else {
+      this.setState({
+        open: false,
+      });
+    }
   }
 
   handleRequestCloseInfo(event) {
@@ -272,6 +280,27 @@ class Main extends Component {
   }
 
   render() {
+    const modalActions = [
+      <FlatButton
+        label="Cancel"
+        primary
+        onTouchTap={(event) => {
+          this.setState({
+            modalOpen: false,
+          });
+        }}
+      />,
+      <FlatButton
+        label="Submit"
+        primary
+        onTouchTap={(event) => {
+          this.setState({
+            modalOpen: false,
+          });
+        }}
+      />,
+    ];
+
     return (
       <MuiThemeProvider>
         <div>
@@ -337,12 +366,20 @@ class Main extends Component {
             {this.renderRooms()}
           </div>
           <Snackbar
-            open={this.state.open}
+            open={this.state.open && (this.state.selected.length > 0)}
             message={`You've booked ${this.state.selected.length} time slots`}
             action="Submit"
-            onActionTouchTap={this.handleActionTouchTap}
+            onActionTouchTap={() => { this.handleActionTouchTap(); }}
             onRequestClose={(event) => { this.handleRequestClose(); }}
           />
+          <Dialog
+            title="Confirm your booking"
+            actions={modalActions}
+            modal
+            open={this.state.modalOpen}
+          >
+            You have booked {this.state.selected.length} session(s).
+          </Dialog>
           <Popover
             open={this.state.infoOpen}
             anchorEl={this.state.anchorEl}
